@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- body -->
+
+<div class="container-fluid mt-3">
+	<div class="row">
+		<div class="col-lg-2 mx-auto">
+			<div class="list-group">
+				<a href="/" style=background:pink class="list-group-item list-group-item-action">Все продукты</a>
+				{% for category in categories %}
+				<a href="/?category={{category.id}}"
+					style=background:pink class="list-group-item list-group-item-action">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+
+		<!-- all products  дефоль
+		<div id='products' class="col-lg-10 mx-auto">
+			<div class="row mx-auto">
+				{% for product in products %}
+				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top row-lg-6" src="{{product.image.url}}" alt="Card image cap">
+					<div class="card-body">
+						<b><p class="card-title ">{{product.name}}</p></b>
+						<p class="card-text "><b>{{product.price}}</b></p>
+						<p class="card-text "><b>{{product.description}}</b></p>
+					</div>
+					<form action="/#{{product.id}}" method="POST" class="btn-block">
+						{% csrf_token %}
+						<input hidden type="text" name='product' value='{{product.id}}'>
+						<input type="submit" style=background:pink class="float-right btn btn-light  form-control" value="Добавить в список желаний">
+					</form>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>-->
+
+<!-- Шняга для размещений таблиц друг под другом
+<div id='products' class="col-lg-10 mx-auto">
+    <div class="row mx-auto">
+        <div class="d-grid gap-3" style="grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));">
+            {% for product in products %}
+            <div class="card" id="{{product.id}}" style="width: 18rem;">
+                <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <b><p class="card-title">{{product.name}}</p></b>
+                    <p class="card-text"><b>{{product.price}}</b></p>
+                    <p class="card-text"><b>{{product.description}}</b></p>
+                </div>
+                <form action="/#{{product.id}}" method="POST" class="btn-block">
+                    {% csrf_token %}
+                    <input hidden type="text" name='product' value='{{product.id}}'>
+                    <input type="submit" style="background:pink" class="float-right btn btn-light form-control" value="Добавить в список желаний">
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>-->
+
+<!-- all products -->
+
+<div id='products' class="col-lg-10 mx-auto">
+    <div class="d-flex flex-wrap justify-content-center">
+        {% for product in products %}
+        <div class="card m-3" id="{{product.id}}" style="width: 18rem;">
+            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+            <div class="card-body">
+                <b><p class="card-title">{{product.name}}</p></b>
+                <p class="card-text"><b>{{product.price}}</b></p>
+                <p class="card-text"><b>{{product.description}}</b></p>
+            </div>
+            <form action="/#{{product.id}}" method="POST" class="btn-block">
+                {% csrf_token %}
+                <input hidden type="text" name='product' value='{{product.id}}'>
+                <input type="submit" style="background:pink" class="float-right btn btn-light form-control" value="Добавить в список желаний">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

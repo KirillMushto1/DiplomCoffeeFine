@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Теги -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Coffee Fine</title>
+
+  <style>
+    nav{
+      background-color: white;
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+}
+  </style>
+</head>
+
+<body>
+  <style>
+    body {
+      background-image: url('https://i.pinimg.com/originals/5f/08/a6/5f08a6cd7a64c73174ef1a5bb633943d.png');
+      background-attachment: fixed;
+    }
+  </style>
+
+
+  <nav class="one-edge-shadow
+  sticky-top navbar
+  navbar-expand-lg" style=background:pink>
+    <b><a class="navbar-brand" href="/">Coffe Fine</a></b>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Меню <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+
+
+      <ul class=" navbar-nav my-2 my-lg-0 ">
+
+        {% if request.session.customer %}
+
+        <li class="nav-item ">
+        <b><a class="nav-link" >Добро пожаловать, {{name}}</a></b>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/cart">Список желаний
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/booking">Бронирование</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Выйти<span class="sr-only">(current)</span></a>
+        </li>
+
+
+        {% else %}
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/cart">Список желаний
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/signup">Зарегистрироваться<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/login">Войти<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+
+    {% block content %}{% endblock %}
+
+
+</body>
+
+
+</html>
